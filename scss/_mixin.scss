@@ -1,0 +1,29 @@
+@mixin cnt($h) {
+    dispaly: flex;
+    flex-direction: column;
+    height: $h;
+    text-align: center;
+    align-items: stretch;
+    justify-content: center;
+}
+
+@mixin tr($x, $y, $z) {
+    transform: translate3d($x, $y, $z);
+}
+
+@mixin flexbox() {
+    display: -moz-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    font-size: 0;
+}
+
+@mixin flexorder($val) {
+    -webkit-box-ordinal-group: $val;
+    -moz-box-ordinal-group: $val;
+    -ms-flex-order: $val;
+    -webkit-order: $val;
+    order: $val;
+}
