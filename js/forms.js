@@ -1,9 +1,9 @@
 function forms (){
  $('input, textarea').focus(function(){
-     if($(this).val() == $(this).attr('data-value')){
+     if($(this).val() === $(this).attr('data-value')){
          $(this).addClass('focus');
          $(this).parent().addClass('focus');
-         if($(this).attr('data-type') == 'pass'){
+         if($(this).attr('data-type') === 'pass'){
              $(this).attr('type', 'password');
          };
          $(this).val('');
@@ -11,36 +11,36 @@ function forms (){
      removeError($(this));
  });
  $('input[data-value], textarea[data-value]').each (function(){
-     if (this.value == '' || this.value == $(this).attr('data-value')) {
-         if($(this).hasClass('l') && $(this).parent().find('.form__label').length==0){
+     if (this.value === '' || this.value === $(this).attr('data-value')) {
+         if($(this).hasClass('l') && $(this).parent().find('.form__label').length===0){
              $(this).parent().append('<div class="form__label">'+$(this).attr('data-value')+'</div>');
          }else{
              this.value = $(this).attr('data-value');
          }
      }
-     if(this.value!=$(this).attr('data-value') && this.value!=''){
+     if(this.value!==$(this).attr('data-value') && this.value!==''){
          $(this).addClass('focus');
          $(this).parent().addClass('focus');
-         if($(this).hasClass('l') && $(this).parent().find('.form__label').length==0){
+         if($(this).hasClass('l') && $(this).parent().find('.form__label').length===0){
             $(this).parent().append('<div class="form__label">'+$(this).attr('data-value')+'</div>');
          }
      }
      $(this).click(function() {
-         if(this.value == $(this).attr('data-value')){
-             if($(this).attr('data-type') == 'pass'){
+         if(this.value === $(this).attr('data-value')){
+             if($(this).attr('data-type') === 'pass'){
                 $(this).attr('type', 'password');
              };
              this.value = '';
          };
      });
      $(this).blur(function() {
-         if(this.value = ''){
+         if(this.value === ''){
              if(!$(this).hasClass('l')){
                  this.value = $(this).attr('data-value');
              }
              $(this).removeClass('focus');
              $(this).parent().removeClass('focus');
-             if($(this).attr('data-type') == 'pass'){
+             if($(this).attr('data-type') === 'pass'){
                  $(this).attr('type', 'text');
              };
          };
@@ -68,9 +68,9 @@ $('form button[type=submit]').click(function(){
     $.each(form.find('req'), function(index, val){
         er += formValidate($(this));
     });
-    if(er==0){
+    if(er===0){
         removeFormError(form);
-        if(ms != null && ms != ''){
+        if(ms != null && ms !== ''){
             showMessageByClass(ms);
             return false;
         }
@@ -79,27 +79,27 @@ $('form button[type=submit]').click(function(){
 function formValidate(input){
     var er = 0;
     var form = input.parents('form');
-    if(input.attr('name')=='email' || input.hasclass('email')){
-        if(input.val()!=input.attr('data-value')){
+    if(input.attr('name')==='email' || input.hasclass('email')){
+        if(input.val()!==input.attr('data-value')){
             var em = input.value().replace(" ","");
             input.val(em);
         }
-        if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.val())) || input.val()==input.attr('data-value')){
+        if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.val())) || input.val()===input.attr('data-value')){
             er++;
             addError(input);
         }else{
             removeError(input);
         }
     }else{
-        if(input.val()=='' || input.val()==input.attr('data-value')){
+        if(input.val()==='' || input.val()===input.attr('data-value')){
             er++;
             addError(input);
         }else{
             removeError(input);
         }  
     }
-    if(input.attr('type')=='checkbox'){
-        if(input.prop('cheked') == true){
+    if(input.attr('type')==='checkbox'){
+        if(input.prop('cheked') === true){
             input.removeClass('err').parent().removeClass('err');
         }else{
             er++;
@@ -113,7 +113,7 @@ function formValidate(input){
         }
     }
     if(input.hasClass('pass-2')){
-        if(form.find('.pass-1').val()!=form.find('.pass-2').val()){
+        if(form.find('.pass-1').val()!==form.find('.pass-2').val()){
             addError(input);
         }else{
             removeError(input);
@@ -150,7 +150,7 @@ function addError(input){
     input.parent().find('.form__error').remove();
     if(input.hasClass('email')){
         var error='';
-        if(input.val()=='' || input.val()==input.attr('data-value')){
+        if(input.val()==='' || input.val()===input.attr('data-value')){
             error=input.data('error');
         }else{
             error=input.data('error');
@@ -159,7 +159,7 @@ function addError(input){
             input.parent().append('<div class="form__error">'+error+'</div>');
         }
     }else{
-        if(input.data('error')!=null && input.parent().find('.form__error').length==0){
+        if(input.data('error')!=null && input.parent().find('.form__error').length===0){
             input.parent().append('<div class="form__error">'+input.data('error')+'</div>');
         }
     }
